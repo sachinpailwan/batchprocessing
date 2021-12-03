@@ -20,15 +20,13 @@ public class JobRunningService {
 
     private final JobLauncher jobLauncher;
 
-    private final ExitCodeMapper exitCodeMapper;
 
     private JobExecution jobExecution;
 
     @Autowired
-    public JobRunningService(JobRegistry jobRegistry, JobLauncher jobLauncher, ExitCodeMapper exitCodeMapper) {
+    public JobRunningService(JobRegistry jobRegistry, JobLauncher jobLauncher) {
         this.jobRegistry = jobRegistry;
         this.jobLauncher = jobLauncher;
-        this.exitCodeMapper = exitCodeMapper;
     }
 
     public void runJob(String jobName, JobParameters jobParameters) {

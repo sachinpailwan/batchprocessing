@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -64,6 +65,8 @@ public class ApplicationJobRunner  {
     @GetMapping(value = "/runnow",produces = "application/json")
     public List<Person> runNow() {
         JobConfig jobConfig = JobConfig.builder().jobName("importUserJob")
+                .param(new HashMap<>())
+                .isForceRun(true)
                 .build();
         return run(jobConfig);
     }

@@ -64,10 +64,11 @@ public class ApplicationJobRunner  {
 
     @GetMapping(value = "/runnow",produces = "application/json")
     public List<Person> runNow() {
-        JobConfig jobConfig = JobConfig.builder().jobName("importUserJob")
-                .param(new HashMap<>())
-                .isForceRun(true)
-                .build();
+        JobConfig jobConfig = new  JobConfig();
+        jobConfig.setJobName("importUserJob");
+        jobConfig.setParam(new HashMap<>());
+        jobConfig.setForceRun(true);
+
         return run(jobConfig);
     }
 

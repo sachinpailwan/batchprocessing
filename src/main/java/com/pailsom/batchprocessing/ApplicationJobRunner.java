@@ -66,7 +66,7 @@ public class ApplicationJobRunner  {
     public List<Person> runNow() {
         JobConfig jobConfig = new  JobConfig();
         jobConfig.setJobName("importUserJob");
-        jobConfig.setParam(new HashMap<>());
+        jobConfig.setParam(new HashMap<String, String>());
         jobConfig.setForceRun(true);
 
         return run(jobConfig);

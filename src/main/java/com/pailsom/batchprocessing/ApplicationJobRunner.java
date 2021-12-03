@@ -8,10 +8,7 @@ import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -64,5 +61,11 @@ public class ApplicationJobRunner  {
         return new JobParameter(argument);
     }
 
+    @GetMapping(value = "/runnow",produces = "application/json")
+    public List<Person> runNow() {
+        JobConfig jobConfig = JobConfig.builder().jobName("importUserJob")
+                .build();
+        return run(jobConfig);
+    }
 
 }

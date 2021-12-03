@@ -10,14 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class BatchProcessingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication application = new SpringApplicationBuilder()
-				.sources(BatchProcessingApplication.class)
-				.web(WebApplicationType.NONE)
-				.build();
-
-		ConfigurableApplicationContext applicationContext = application.run(args);
-		int exitCode = SpringApplication.exit(applicationContext);
-		System.exit(exitCode);
+		SpringApplication.run(BatchProcessingApplication.class,args);
 	}
 
 }

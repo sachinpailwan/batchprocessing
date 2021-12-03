@@ -61,12 +61,4 @@ public class JobRunningService {
                 .map(JobExecution::getId)
                 .orElseThrow(() -> new IllegalStateException("No job execution available"));
     }
-
-    public int lastExitCode() {
-        return lastExecutedJob()
-                .map(JobExecution::getExitStatus)
-                .map(ExitStatus::getExitCode)
-                .map(exitCodeMapper::intValue)
-                .orElse(1);
-    }
 }

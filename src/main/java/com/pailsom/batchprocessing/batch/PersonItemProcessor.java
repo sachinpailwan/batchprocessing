@@ -20,7 +20,6 @@ public class PersonItemProcessor implements ItemProcessor<Person, Person> {
 
         final Person transformedPerson = Person.builder()
                 .firstName(firstName)
-//                .Id(count.getAndIncrement())
                 .lastName(lastName).build();
 
         log.info("Converting (" + person + ") into (" + transformedPerson + ")");

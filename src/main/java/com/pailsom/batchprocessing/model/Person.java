@@ -21,7 +21,10 @@ public class Person {
     @SequenceGenerator(sequenceName = "SEQ_PERSON", allocationSize = 1, name = "SEQ_PERSON")
     private long Id;
 
+    @Column(name = "lastname")
     private String lastName;
+
+    @Column(name = "firstname")
     private String firstName;
 
 }

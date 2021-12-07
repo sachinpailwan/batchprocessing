@@ -24,8 +24,7 @@ import org.springframework.core.io.ClassPathResource;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableBatchProcessing
-public class BatchConfiguration {
+public class ImportUserJobConfiguration {
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -61,12 +60,13 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Job importUserJob(JobCompletionNotificationListener listener, Step step1) {
+    public Job importUserJob(JobCompletionNotificationListener listener, Step step1,PersonRepository repository) {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step1)
                 .end()
+                .listener(new JobCompletionNotificationListener(repository))
                 .build();
     }
 

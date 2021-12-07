@@ -62,14 +62,16 @@ public class ApplicationJobRunner  {
         return new JobParameter(argument);
     }
 
-    @GetMapping(value = "/runnow",produces = "application/json")
-    public List<Person> runNow() {
+    @GetMapping(value = "/runnow/{jobname}",produces = "application/json")
+    public List<Person> runNow(@PathVariable("jobname") String jobname) {
         JobConfig jobConfig = new  JobConfig();
-        jobConfig.setJobName("importUserJob");
+        jobConfig.setJobName(jobname);
         jobConfig.setParam(new HashMap<String, String>());
         jobConfig.setForceRun(true);
 
         return run(jobConfig);
     }
+
+
 
 }

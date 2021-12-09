@@ -1,6 +1,10 @@
 steps:
-  #build docker container
+  #build maven
+  - name: 'maven:3-jdk-8'
+    entrypoint: mvn
+    args: ['clean','install','-Dmaven.source.skip=true']
 
+  #build docker container
   - name: 'gcr.io/absolute-vertex-328512/docker'
     args: [ 'build', '-t', 'gcr.io/absolute-vertex-328512/batch-processing-app', '.']
 
@@ -23,10 +27,6 @@ steps:
       - '--allow-unauthenticated'
 images:
   - 'gcr.io/absolute-vertex-328512/batch-processing-app'
-
-#  - id: push image
-#    name: 'gcr.io/cloud-builders/docker'
-#    args: [ 'push', 'gcr.io/absolute-vertex-328512/batch-processing:1.11-SNAPSHOT' ]
 
 options:
   logging: CLOUD_LOGGING_ONLY

@@ -19,7 +19,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'cloudrunservice'
+      - 'batch-processing'
       - '--image'
       - 'gcr.io/absolute-vertex-328512/batch-processing-app'
       - '--region'

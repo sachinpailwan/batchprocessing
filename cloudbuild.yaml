@@ -2,18 +2,20 @@ steps:
   #build maven
   - name: 'maven:3-jdk-8'
     entrypoint: mvn
-    args: ['clean','install','-Dmaven.source.skip=true']
+    args: ['clean','install']
 
   #build docker container
-  - name: 'gcr.io/absolute-vertex-328512/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'gcr.io/absolute-vertex-328512/batch-processing-app', '.']
 
   #push container to container registry
-  - name: 'gcr.io/absolute-vertex-328512/docker'
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: docker
     args: [ 'push', 'gcr.io/absolute-vertex-328512/batch-processing-app']
 
   #deploy to cloud run
-  - name: 'gcr.io/absolute-vertex-328512/gcloud'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'

@@ -1,15 +1,15 @@
 steps:
   #build docker container
 
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/absolute-vertex-328512/docker'
     args: [ 'build', '-t', 'gcr.io/absolute-vertex-328512/batch-processing-app', '.']
 
   #push container to container registry
-  - name: 'gcr.io/bsolute-vertex-328512/docker'
+  - name: 'gcr.io/absolute-vertex-328512/docker'
     args: [ 'push', 'gcr.io/absolute-vertex-328512/batch-processing-app']
 
   #deploy to cloud run
-  - name: 'gcr.io/bsolute-vertex-328512/gcloud'
+  - name: 'gcr.io/absolute-vertex-328512/gcloud'
     args:
       - 'run'
       - 'deploy'
